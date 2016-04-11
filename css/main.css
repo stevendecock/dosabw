@@ -29,6 +29,7 @@ video {
    transform: translate(-50%, -50%);
    color: lightGrey;
    font-size: 10em;
+   text-shadow: 4px 4px #000000;
 }
 
 #main .bottom {
@@ -48,4 +49,5 @@ video {
    transform: translate(-50%, -50%);
    color: lightGrey;
    font-size: 6em;
+   text-shadow: 4px 4px #000000;
 }
