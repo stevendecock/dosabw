@@ -15,3 +15,37 @@ video {
     opacity: .1875;
     filter: alpha(opacity=8);
 }
+
+#main {
+    z-index: 800;
+}
+
+#main .content {
+   margin: 0;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   margin-right: -50%;
+   transform: translate(-50%, -50%);
+   color: lightGrey;
+   font-size: 10em;
+}
+
+#main .bottom {
+   position: absolute;
+   top: 800px;
+   left: 50%;
+   margin-right: -50%;
+   transform: translate(-50%, 0);
+}
+
+.bottomContent {
+   margin: 0;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   margin-right: -50%;
+   transform: translate(-50%, -50%);
+   color: lightGrey;
+   font-size: 10em;
+}
