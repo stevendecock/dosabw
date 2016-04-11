@@ -50,4 +50,5 @@ video {
    color: lightGrey;
    font-size: 6em;
    text-shadow: 4px 4px #000000;
+   white-space: nowrap;
 }
