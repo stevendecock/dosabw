@@ -1,0 +1,17 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    background-image: url("../img/pleaseStandBy-bgr.jpg");
+    background-size: 100%;
+    background-color: #cccccc;
+}
+
+video {
+    position: absolute;
+    z-index: 100;
+    top: 0; left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: .1875;
+    filter: alpha(opacity=8);
+}
