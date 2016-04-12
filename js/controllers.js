@@ -53,7 +53,10 @@ function MainCtrl($timeout) {
 
 
     function validateAccess() {
-        vm.access = (atob(unlockPassword)===vm.password)
+        vm.access = (atob(unlockPassword)===vm.password);
+        if (vm.access) {
+            $timeout(changeTemperature, 1000);
+        }
     }
 
     function bottomContent() {
@@ -122,7 +125,5 @@ function MainCtrl($timeout) {
     vm.inDanger = inDanger;
     vm.keydown = keyDown;
     vm.bottomContent = bottomContent;
-
-    $timeout(changeTemperature, 1000);
 
 }
