@@ -3,7 +3,8 @@ var controllers = angular.module('controllers', []);
 controllers.controller("mainCtrl", MainCtrl);
 
 function MainCtrl($timeout) {
-    var locks = 10;
+    var startingNumberOfLocks = 10;
+    var locks = startingNumberOfLocks;
 
     var vm = this;
     var timeToNextMeltDownInSeconds = 5;
@@ -66,6 +67,13 @@ function MainCtrl($timeout) {
     }
 
     function keyDown(event) {
+        if (event.keyCode === 13) {
+            validateAccess();
+            return;
+        }
+        if (!vm.access) {
+            return;
+        }
         console.log('Pressed key: ' + event.keyCode);
         if (event.keyCode === 32) {
             if (meltDownPromise !== undefined) {
@@ -84,8 +92,6 @@ function MainCtrl($timeout) {
                     locks++;
                 }
             }
-        } else if (event.keyCode === 13) {
-            validateAccess();
         }
     }
 
@@ -108,7 +114,7 @@ function MainCtrl($timeout) {
     }
 
     function meltDown() {
-        locks = 10;
+        locks = startingNumberOfLocks;
         lastMeltDown = new Date();
         vm.meltDown = true;
         $timeout(function () {vm.meltDown = false}, 3000);
