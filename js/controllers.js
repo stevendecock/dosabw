@@ -121,7 +121,7 @@ function MainCtrl($timeout) {
     }
 
     function meltDown() {
-        locks = startingNumberOfLocks;
+        locks = Math.max(startingNumberOfLocks, locks);
         lastMeltDown = new Date();
         vm.meltDown = true;
         $timeout(function () {vm.meltDown = false}, 3000);
