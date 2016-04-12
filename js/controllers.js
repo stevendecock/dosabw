@@ -6,10 +6,12 @@ function MainCtrl($timeout) {
     var locks = 10;
 
     var vm = this;
+    var timeToNextMeltDownInSeconds = 5;
+    var lastMeltDown = new Date();
+    var meltDownPromise = undefined;
 
     vm.temperature = 36;
     vm.message = 'Please closely monitor the gauge below!';
-    vm.bottomContent = 'Remaining meltdowns to prevent : ' + locks;
 
     vm.gauge = {
         upperLimit : 100,
@@ -46,9 +48,57 @@ function MainCtrl($timeout) {
         ]
     };
 
+    function bottomContent() {
+        return 'Remaining meltdowns to prevent : ' + locks;
+    }
+
+    function keyDown(event) {
+        console.log('Pressed key: ' + event.keyCode);
+        if (event.keyCode === 32) {
+            if (meltDownPromise !== undefined) {
+                $timeout.cancel(meltDownPromise);
+                lastMeltDown = new Date();
+                locks--;
+                meltDownPromise = undefined;
+
+                if (locks > 0) {
+                    changeTemperature();
+                } else {
+                    vm.finished = true;
+                }
+            } else {
+                if (locks < 20) {
+                    locks++;
+                }
+            }
+        }
+    }
+
+    function timeSinceLastMeltDownInSeconds() {
+        var now = new Date();
+        return (now.getTime() - lastMeltDown.getTime()) / 1000;
+    }
+
     function changeTemperature() {
-        vm.temperature = randomBetween(0, 100);
-        $timeout(changeTemperature, randomBetween(0.5, 2) * 1000 );
+        if (timeSinceLastMeltDownInSeconds() < timeToNextMeltDownInSeconds) {
+            vm.temperature = randomBetween(0, 85);
+        } else {
+            vm.temperature = randomBetween(0, 100);
+        }
+        if (!inDanger()) {
+            $timeout(changeTemperature, randomBetween(0.5, 2) * 1000 );
+        } else {
+            meltDownPromise = $timeout(meltDown, 2000);
+        }
+    }
+
+    function meltDown() {
+        locks = 10;
+        lastMeltDown = new Date();
+        vm.meltDown = true;
+        $timeout(function () {vm.meltDown = false}, 3000);
+        changeTemperature();
+        meltDownPromise = undefined;
     }
 
     function randomBetween(min, max) {
@@ -60,6 +110,8 @@ function MainCtrl($timeout) {
     }
 
     vm.inDanger = inDanger;
+    vm.keydown = keyDown;
+    vm.bottomContent = bottomContent;
 
     $timeout(changeTemperature, 1000);
 
