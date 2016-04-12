@@ -10,6 +10,7 @@ function MainCtrl($timeout) {
     vm.temperature = 36;
     vm.message = 'Please closely monitor the gauge below!';
     vm.bottomContent = 'Remaining meltdowns to prevent : ' + locks;
+    vm.access = false;
 
     vm.gauge = {
         upperLimit : 100,
@@ -46,6 +47,13 @@ function MainCtrl($timeout) {
         ]
     };
 
+
+    function validateAccess() {
+        vm.access = true;
+    }
+
+
+
     function changeTemperature() {
         vm.temperature = randomBetween(0, 100);
         $timeout(changeTemperature, randomBetween(0.5, 2) * 1000 );
@@ -59,7 +67,6 @@ function MainCtrl($timeout) {
         return vm.temperature >= 85;
     }
 
-    vm.inDanger = inDanger;
 
     $timeout(changeTemperature, 1000);
 

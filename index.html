@@ -30,12 +30,19 @@
     <div id="main" data-ng-controller="mainCtrl as main">
 
 
-        <div class="top">
+        <div>
+            <form >
+                <input type="text" class="unlock-input" placeholder="access denied" ng-model="main.password" ng-show="!main.access" ng-enter="main.validateAccess()">
+            </form>
+
+        </div>
+
+        <div class="top" ng-show="main.access">
             <div class="topContent">
                 {{main.message}}
             </div>
         </div>
-        <div class="content">
+        <div class="content" ng-show="main.access">
             <div width="600" ng-radial-gauge data="main.gauge" value="main.temperature"
                  needle-color="#C50200"
                  class="gauge"
@@ -43,7 +50,7 @@
             >
             </div>
         </div>
-        <div class="bottom">
+        <div class="bottom" ng-show="main.access">
             <div class="bottomContent">
                 {{main.bottomContent}}
             </div>

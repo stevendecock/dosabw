@@ -32,6 +32,24 @@ video {
    // text-shadow: 4px 4px #000000;
 }
 
+.unlock-input {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1200px;
+    background-color: transparent;
+    border: none;
+
+
+    transform: translate(-50%, -50%);
+    color: lightGrey;
+    font-size: 6em;
+    text-align: center;
+    text-shadow: 4px 4px #000000;
+    z-index: 100;
+}
+
 #main .bottom {
    position: absolute;
    bottom: 150px;
