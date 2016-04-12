@@ -23,11 +23,11 @@
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
 </head>
-<body>
+<body data-ng-controller="mainCtrl as main" data-ng-keydown="main.keydown($event)">
 
     <video src="img/flicker.mp4" loop autoplay></video>
 
-    <div id="main" data-ng-controller="mainCtrl as main">
+    <div id="main">
 
 
         <div>
@@ -52,7 +52,7 @@
         </div>
         <div class="bottom" ng-show="main.access">
             <div class="bottomContent">
-                {{main.bottomContent}}
+                {{main.bottomContent()}}
             </div>
         </div>
     </div>
