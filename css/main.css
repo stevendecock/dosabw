@@ -29,15 +29,42 @@ video {
    transform: translate(-50%, -50%);
    color: lightGrey;
    font-size: 10em;
-   text-shadow: 4px 4px #000000;
+   // text-shadow: 4px 4px #000000;
 }
 
 #main .bottom {
    position: absolute;
-   top: 800px;
+   bottom: 150px;
    left: 50%;
    margin-right: -50%;
    transform: translate(-50%, 0);
+}
+
+.gauge {
+    border-radius: 50%;
+    background-color: rgba(210, 210, 210, .7) ;
+    padding-bottom:  70px;
+}
+
+#main .top {
+   position: absolute;
+   top: 150px;
+   left: 50%;
+   margin-right: -50%;
+   transform: translate(-50%, 0);
+}
+
+.topContent {
+   margin: 0;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   margin-right: -50%;
+   transform: translate(-50%, -50%);
+   color: lightGrey;
+   font-size: 6em;
+   text-shadow: 4px 4px #000000;
+   white-space: nowrap;
 }
 
 .bottomContent {
