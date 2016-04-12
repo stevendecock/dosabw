@@ -9,6 +9,7 @@ function MainCtrl($timeout) {
     var timeToNextMeltDownInSeconds = 5;
     var lastMeltDown = new Date();
     var meltDownPromise = undefined;
+    var unlockPassword="NCA4IDE1IDE2IDIzIDQy";
 
     vm.temperature = 36;
     vm.message = 'Please closely monitor the gauge below!';
@@ -52,7 +53,7 @@ function MainCtrl($timeout) {
 
 
     function validateAccess() {
-        vm.access = true;
+        vm.access = (atob(unlockPassword)===vm.password)
     }
 
     function bottomContent() {
