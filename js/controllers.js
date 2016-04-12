@@ -53,7 +53,13 @@ function MainCtrl($timeout) {
 
 
     function validateAccess() {
-        vm.access = (atob(unlockPassword)===vm.password)
+        if (vm.access) {
+            return;
+        } else {
+            vm.access = (atob(unlockPassword) === vm.password);
+            $timeout(changeTemperature, 500);
+        }
+
     }
 
     function bottomContent() {
@@ -79,7 +85,7 @@ function MainCtrl($timeout) {
                     locks++;
                 }
             }
-        } else if (event.keyCode === 13 && !vm.access) {
+        } else if (event.keyCode === 13) {
             validateAccess();
         }
     }
@@ -122,7 +128,5 @@ function MainCtrl($timeout) {
     vm.inDanger = inDanger;
     vm.keydown = keyDown;
     vm.bottomContent = bottomContent;
-
-    $timeout(changeTemperature, 1000);
 
 }
