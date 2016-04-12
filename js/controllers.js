@@ -55,8 +55,6 @@ function MainCtrl($timeout) {
         vm.access = true;
     }
 
-
-
     function bottomContent() {
         return 'Remaining meltdowns to prevent : ' + locks;
     }
@@ -80,6 +78,8 @@ function MainCtrl($timeout) {
                     locks++;
                 }
             }
+        } else if (event.keyCode === 13 && !vm.access) {
+            validateAccess();
         }
     }
 
@@ -121,7 +121,6 @@ function MainCtrl($timeout) {
     vm.inDanger = inDanger;
     vm.keydown = keyDown;
     vm.bottomContent = bottomContent;
-    vm.validateAccess = validateAccess;
 
     $timeout(changeTemperature, 1000);
 
