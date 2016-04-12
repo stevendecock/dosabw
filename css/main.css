@@ -4,6 +4,7 @@ body, html {
     background-image: url("../img/background_no_text.jpg");
     background-size: 100%;
     background-color: #cccccc;
+    overflow:hidden;
 }
 
 video {

@@ -12,7 +12,7 @@ function MainCtrl($timeout) {
     var unlockPassword="NCA4IDE1IDE2IDIzIDQy";
 
     vm.temperature = 36;
-    vm.message = 'Please closely monitor the gauge below!';
+    vm.message = 'Please closely monitor the reactor pressure';
 
     vm.access = false;
     
