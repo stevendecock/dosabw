@@ -16,6 +16,7 @@ function MainCtrl($timeout) {
     vm.message = 'Please closely monitor the reactor pressure';
 
     vm.access = false;
+    vm.shakeAccessDenied = false;
     
     vm.gauge = {
         upperLimit : 100,
@@ -56,10 +57,16 @@ function MainCtrl($timeout) {
     function validateAccess() {
         if (vm.access) {
             return;
-        } else {
-            vm.access = (atob(unlockPassword) === vm.password);
-            $timeout(changeTemperature, 500);
         }
+            vm.access = (atob(unlockPassword) === vm.password);
+            if (vm.access) {
+                $timeout(changeTemperature, 500);
+            } else {
+                vm.shakeAccessDenied = true;
+                vm.password = "";
+                $timeout(function() {vm.shakeAccessDenied = false}, 500);
+            }
+
     }
 
     function bottomContent() {

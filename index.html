@@ -35,7 +35,11 @@
 
         <div>
             <form >
-                <input type="text" class="unlock-input" placeholder="access denied" ng-model="main.password" ng-show="!main.access">
+                <input type="text" class="unlock-input"
+                       placeholder="access denied"
+                       data-ng-model="main.password"
+                       data-ng-show="!main.access"
+                       data-ng-class="{'shake shake-constant': main.shakeAccessDenied}">
             </form>
 
         </div>
