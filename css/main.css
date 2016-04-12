@@ -40,7 +40,9 @@ video {
     left: 50%;
     width: 1200px;
     background-color: transparent;
+    color: transparent;
     border: none;
+    outline: none;
 
 
     transform: translate(-50%, -50%);

@@ -3,7 +3,8 @@ var controllers = angular.module('controllers', []);
 controllers.controller("mainCtrl", MainCtrl);
 
 function MainCtrl($timeout, ngAudio) {
-    var locks = 10;
+    var startingNumberOfLocks = 10;
+    var locks = startingNumberOfLocks;
 
     var pressureReliefSound = ngAudio.load('pressureRelief');
     var vm = this;
@@ -54,9 +55,11 @@ function MainCtrl($timeout, ngAudio) {
 
 
     function validateAccess() {
-        vm.access = (atob(unlockPassword)===vm.password);
         if (vm.access) {
-            $timeout(changeTemperature, 1000);
+            return;
+        } else {
+            vm.access = (atob(unlockPassword) === vm.password);
+            $timeout(changeTemperature, 500);
         }
     }
 
@@ -65,6 +68,13 @@ function MainCtrl($timeout, ngAudio) {
     }
 
     function keyDown(event) {
+        if (event.keyCode === 13) {
+            validateAccess();
+            return;
+        }
+        if (!vm.access) {
+            return;
+        }
         console.log('Pressed key: ' + event.keyCode);
         if (event.keyCode === 32) {
             if (meltDownPromise !== undefined) {
@@ -84,8 +94,6 @@ function MainCtrl($timeout, ngAudio) {
                     locks++;
                 }
             }
-        } else if (event.keyCode === 13 && !vm.access) {
-            validateAccess();
         }
     }
 
@@ -108,7 +116,7 @@ function MainCtrl($timeout, ngAudio) {
     }
 
     function meltDown() {
-        locks = 10;
+        locks = startingNumberOfLocks;
         lastMeltDown = new Date();
         vm.meltDown = true;
         $timeout(function () {vm.meltDown = false}, 3000);
