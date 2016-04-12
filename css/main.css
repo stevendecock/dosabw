@@ -97,3 +97,13 @@ video {
    text-shadow: 4px 4px #000000;
    white-space: nowrap;
 }
+
+#meltdownOverlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(254, 0, 0, .6);
+    z-index: 1000;
+
+}

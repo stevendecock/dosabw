@@ -30,6 +30,9 @@
     <div id="main">
 
 
+        <div id="meltdownOverlay" data-ng-show="main.meltDown">
+        </div>
+
         <div>
             <form >
                 <input type="text" class="unlock-input" placeholder="access denied" ng-model="main.password" ng-show="!main.access">
