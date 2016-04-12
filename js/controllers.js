@@ -2,10 +2,11 @@ var controllers = angular.module('controllers', []);
 
 controllers.controller("mainCtrl", MainCtrl);
 
-function MainCtrl($timeout) {
+function MainCtrl($timeout, ngAudio) {
     var startingNumberOfLocks = 10;
     var locks = startingNumberOfLocks;
 
+    var pressureReliefSound = ngAudio.load('pressureRelief');
     var vm = this;
     var timeToNextMeltDownInSeconds = 5;
     var lastMeltDown = new Date();
@@ -84,6 +85,7 @@ function MainCtrl($timeout) {
         console.log('Pressed key: ' + event.keyCode);
         if (event.keyCode === 32) {
             if (meltDownPromise !== undefined) {
+                pressureReliefSound.play();
                 $timeout.cancel(meltDownPromise);
                 lastMeltDown = new Date();
                 locks--;

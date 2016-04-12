@@ -1,3 +1,3 @@
 var app = angular.module('dosabw', [
-  'controllers', 'ngRadialGauge'
+  'controllers', 'ngRadialGauge', 'ngAudio'
 ]);
