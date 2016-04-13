@@ -11,7 +11,7 @@ function MainCtrl($timeout, ngAudio) {
     var timeToNextMeltDownInSeconds = 5;
     var lastMeltDown = new Date();
     var meltDownPromise = undefined;
-    var unlockPassword="NCA4IDE1IDE2IDIzIDQy";
+    var unlockPassword="NDgxNTE2MjM0Mg==";
 
     vm.temperature = 36;
     vm.message = 'Please closely monitor the reactor pressure';
@@ -59,7 +59,7 @@ function MainCtrl($timeout, ngAudio) {
         if (vm.access) {
             return;
         }
-            vm.access = (atob(unlockPassword) === vm.password);
+            vm.access = (atob(unlockPassword) === stripNonNumeric(vm.password));
             if (vm.access) {
                 $timeout(changeTemperature, 500);
             } else {
@@ -67,7 +67,10 @@ function MainCtrl($timeout, ngAudio) {
                 vm.password = "";
                 $timeout(function() {vm.shakeAccessDenied = false}, 500);
             }
+    }
 
+    function stripNonNumeric(value) {
+        return value.replace(/\D/g,'');
     }
 
     function bottomContent() {
