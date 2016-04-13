@@ -74,6 +74,14 @@ function MainCtrl($timeout, ngAudio) {
         return 'Remaining meltdowns to prevent : ' + locks;
     }
 
+    function gaugeWidth() {
+        return Math.round(window.innerHeight * 0.55);
+    }
+
+    function gaugePaddingBottom() {
+        return Math.round(gaugeWidth() * 0.12);
+    }
+
     function keyDown(event) {
         if (event.keyCode === 13) {
             validateAccess();
@@ -142,5 +150,7 @@ function MainCtrl($timeout, ngAudio) {
     vm.inDanger = inDanger;
     vm.keydown = keyDown;
     vm.bottomContent = bottomContent;
+    vm.gaugeWidth = gaugeWidth;
+    vm.gaugePaddingBottom = gaugePaddingBottom;
 
 }

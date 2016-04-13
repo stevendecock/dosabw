@@ -49,20 +49,21 @@
 
         </div>
 
-        <div class="top" ng-show="main.access">
+        <div class="top" data-ng-show="main.access">
             <div class="topContent">
                 {{main.message}}
             </div>
         </div>
-        <div class="content" ng-show="main.access">
-            <div width="600" ng-radial-gauge data="main.gauge" value="main.temperature"
-                 needle-color="#C50200"
+        <div class="content" data-ng-show="main.access">
+            <div data-width="{{main.gaugeWidth()}}" data-ng-radial-gauge data-data="main.gauge" data-value="main.temperature"
+                 data-needle-color="#C50200"
                  class="gauge"
                  data-ng-class="{'shake shake-constant': main.inDanger()}"
+                 style="padding-bottom: {{main.gaugePaddingBottom()}}px"
             >
             </div>
         </div>
-        <div class="bottom" ng-show="main.access">
+        <div class="bottom" data-ng-show="main.access">
             <div class="bottomContent">
                 {{main.bottomContent()}}
             </div>
