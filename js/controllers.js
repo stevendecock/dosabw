@@ -54,7 +54,6 @@ function MainCtrl($timeout, ngAudio) {
         ]
     };
 
-
     function validateAccess() {
         if (vm.access) {
             return;

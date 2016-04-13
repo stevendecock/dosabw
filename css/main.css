@@ -2,8 +2,11 @@ body, html {
     margin: 0;
     padding: 0;
     background-image: url("../img/background_no_text.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     background-size: 100%;
-    background-color: #cccccc;
+    background-color: #151515;
     overflow:hidden;
 }
 
