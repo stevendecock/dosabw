@@ -106,12 +106,17 @@ video {
 }
 
 #meltdownOverlay {
-   position: absolute;
-   top: 0;
-   bottom: 0;
-   width: 100%;
-   background-color: rgba(254, 0, 0, .6);
-   z-index: 1000;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(254, 0, 0, .6);
+    z-index: 1000;
+}
+
+#meltdownOverlay.ng-hide {
+    transition: 2s linear all;
+    opacity: 0;
 }
 
 #sln {
