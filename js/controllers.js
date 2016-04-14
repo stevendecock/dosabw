@@ -3,12 +3,14 @@ var controllers = angular.module('controllers', []);
 controllers.controller("mainCtrl", MainCtrl);
 
 function MainCtrl($timeout, ngAudio) {
+    var timeToReactBeforeMeltDownInSeconds = 2;
+    var timeToNextMeltDownInSeconds = 5;
     var startingNumberOfLocks = 10;
     var locks = startingNumberOfLocks;
 
     var pressureReliefSound = ngAudio.load('pressureRelief');
+    var rattleSound = ngAudio.load('rattle');
     var vm = this;
-    var timeToNextMeltDownInSeconds = 5;
     var lastMeltDown = new Date();
     var meltDownPromise = undefined;
     var unlockPassword="NDgxNTE2MjM0Mg==";
@@ -96,6 +98,7 @@ function MainCtrl($timeout, ngAudio) {
         if (event.keyCode === 32) {
             if (meltDownPromise !== undefined) {
                 pressureReliefSound.play();
+                rattleSound.stop();
                 $timeout.cancel(meltDownPromise);
                 lastMeltDown = new Date();
                 locks--;
@@ -128,7 +131,8 @@ function MainCtrl($timeout, ngAudio) {
         if (!inDanger()) {
             $timeout(changeTemperature, randomBetween(0.5, 2) * 1000 );
         } else {
-            meltDownPromise = $timeout(meltDown, 2000);
+            meltDownPromise = $timeout(meltDown, timeToReactBeforeMeltDownInSeconds * 1000);
+            rattleSound.play();
         }
     }
 
