@@ -49,6 +49,12 @@
         <div id="meltdownOverlay" data-ng-show="main.meltDown">
         </div>
 
+        <div id="sln" data-ng-show="main.finished">
+            <div class="slnContent">
+                {{main.sln()}}
+            </div>
+        </div>
+
         <div>
             <form >
                 <input type="text" class="unlock-input"
