@@ -1,4 +1,4 @@
-var controllers = angular.module('controllers', []);
+var controllers = angular.module('controllers', ['ngAnimate']);
 
 controllers.controller("mainCtrl", MainCtrl);
 
@@ -143,7 +143,7 @@ function MainCtrl($timeout, ngAudio) {
         locks = Math.max(startingNumberOfLocks, locks);
         lastMeltDown = new Date();
         vm.meltDown = true;
-        $timeout(function () {vm.meltDown = false}, 3000);
+        $timeout(function () {vm.meltDown = false}, 1000);
         changeTemperature();
         meltDownPromise = undefined;
     }
