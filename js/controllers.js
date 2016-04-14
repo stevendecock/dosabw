@@ -11,6 +11,9 @@ function MainCtrl($timeout, ngAudio) {
     var pressureReliefSound = ngAudio.load('pressureRelief');
     var rattleSound = ngAudio.load('rattle');
     var explosionSound = ngAudio.load('explosion');
+    var machineSound = ngAudio.load('machineKort');
+    machineSound.loop = true;
+
     var vm = this;
     var lastMeltDown = new Date();
     var meltDownPromise = undefined;
@@ -63,6 +66,7 @@ function MainCtrl($timeout, ngAudio) {
         }
             vm.access = (atob(unlockPassword) === stripNonNumeric(vm.password));
             if (vm.access) {
+                machineSound.play();
                 $timeout(changeTemperature, 500);
             } else {
                 vm.shakeAccessDenied = true;
@@ -138,12 +142,16 @@ function MainCtrl($timeout, ngAudio) {
     }
 
     function meltDown() {
+        machineSound.pause();
         rattleSound.stop();
         explosionSound.play();
         locks = Math.max(startingNumberOfLocks, locks);
         lastMeltDown = new Date();
         vm.meltDown = true;
-        $timeout(function () {vm.meltDown = false}, 1000);
+        $timeout(function () {
+                vm.meltDown = false;
+                machineSound.play();
+            }, 1000);
         changeTemperature();
         meltDownPromise = undefined;
     }
