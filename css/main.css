@@ -114,11 +114,35 @@ video {
     z-index: 1000;
 }
 
-
 #meltdownOverlay.ng-hide {
     transition: 2s linear all;
     opacity: 0;
 }
+
+#sln {
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: rgba(50, 50, 50, .8);
+   font-size: 4vw;
+   text-shadow: 4px 4px #000000;
+   z-index: 1000;
+   align: center;
+}
+
+#sln .slnContent {
+   margin: 0;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   margin-right: -50%;
+   transform: translate(-50%, -50%);
+   color: lightGrey;
+   font-size: 6vw;
+   text-shadow: 4px 4px #000000;
+}
+
 
 .mtt-graduationValueText {
     display: none;

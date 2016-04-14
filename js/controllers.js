@@ -3,9 +3,10 @@ var controllers = angular.module('controllers', ['ngAnimate']);
 controllers.controller("mainCtrl", MainCtrl);
 
 function MainCtrl($timeout, ngAudio) {
+    var startingNumberOfLocks = 10;
+
     var timeToReactBeforeMeltDownInSeconds = 2;
     var timeToNextMeltDownInSeconds = 5;
-    var startingNumberOfLocks = 10;
     var locks = startingNumberOfLocks;
 
     var pressureReliefSound = ngAudio.load('pressureRelief');
@@ -18,6 +19,7 @@ function MainCtrl($timeout, ngAudio) {
     var lastMeltDown = new Date();
     var meltDownPromise = undefined;
     var unlockPassword="NDgxNTE2MjM0Mg==";
+    var slnTxt="SWsgYmVuIGRlIHZvbGdlbmRlIHRpcA==";
 
     vm.temperature = 36;
     vm.message = 'Please closely monitor the reactor pressure';
@@ -212,11 +214,16 @@ function MainCtrl($timeout, ngAudio) {
         return vm.temperature >= 85;
     }
 
+    function sln() {
+        return atob(slnTxt);
+    }
+
     vm.inDanger = inDanger;
     vm.keydown = keyDown;
     vm.keypress = keyUp;
     vm.bottomContent = bottomContent;
     vm.gaugeWidth = gaugeWidth;
     vm.gaugePaddingBottom = gaugePaddingBottom;
+    vm.sln = sln;
 
 }
