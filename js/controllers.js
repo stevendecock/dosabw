@@ -10,6 +10,7 @@ function MainCtrl($timeout, ngAudio) {
 
     var pressureReliefSound = ngAudio.load('pressureRelief');
     var rattleSound = ngAudio.load('rattle');
+    var explosionSound = ngAudio.load('explosion');
     var vm = this;
     var lastMeltDown = new Date();
     var meltDownPromise = undefined;
@@ -137,6 +138,8 @@ function MainCtrl($timeout, ngAudio) {
     }
 
     function meltDown() {
+        rattleSound.stop();
+        explosionSound.play();
         locks = Math.max(startingNumberOfLocks, locks);
         lastMeltDown = new Date();
         vm.meltDown = true;
