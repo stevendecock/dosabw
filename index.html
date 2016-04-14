@@ -27,6 +27,12 @@
 <body data-ng-controller="mainCtrl as main" data-ng-keydown="main.keydown($event)" data-ng-keyup="main.keypress($event)">
 
     <video src="img/flicker.mp4" loop autoplay></video>
+    <audio id="accessDenied">
+        <source src="audio/access_denied.wav" type="audio/wav">
+    </audio>
+    <audio id="accessGranted">
+        <source src="audio/danger.wav" type="audio/wav">
+    </audio>
     <audio id="pressureRelief">
         <source src="audio/pressureRelief.mp3" type="audio/mp3">
         Your browser does not support the audio tag.

@@ -13,6 +13,8 @@ function MainCtrl($timeout, ngAudio) {
     var rattleSound = ngAudio.load('rattle');
     var explosionSound = ngAudio.load('explosion');
     var machineSound = ngAudio.load('machineKort');
+    var accessDeniedSound = ngAudio.load('accessDenied');
+    var accessGrantedSound = ngAudio.load('accessGranted');
     machineSound.loop = true;
 
     var vm = this;
@@ -71,6 +73,7 @@ function MainCtrl($timeout, ngAudio) {
 
     function showAccessDenied() {
         vm.shakeAccessDenied = true;
+        accessDeniedSound.play();
         vm.password = "";
         $timeout(function() {vm.shakeAccessDenied = false}, 500);
     }
@@ -85,6 +88,7 @@ function MainCtrl($timeout, ngAudio) {
 
         if (vm.access) {
             machineSound.play();
+            accessGrantedSound.play();
             $timeout(changeTemperature, 500);
         }
     }
