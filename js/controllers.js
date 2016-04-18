@@ -8,6 +8,7 @@ function MainCtrl($timeout, ngAudio) {
     var timeToReactBeforeMeltDownInSeconds = 2;
     var timeToNextMeltDownInSeconds = 5;
     var locks = startingNumberOfLocks;
+    var konamiLocks = 2;
 
     var pressureReliefSound = ngAudio.load('pressureRelief');
     var rattleSound = ngAudio.load('rattle');
@@ -16,6 +17,7 @@ function MainCtrl($timeout, ngAudio) {
     var accessDeniedSound = ngAudio.load('accessDenied');
     var accessGrantedSound = ngAudio.load('accessGranted');
     var invalidSpacebarSound = ngAudio.load('invalidSpacebar');
+    var konamiCodeSound = ngAudio.load('konamiCodeSound');
     machineSound.loop = true;
 
     var vm = this;
@@ -23,6 +25,7 @@ function MainCtrl($timeout, ngAudio) {
     var meltDownPromise = undefined;
     var unlockPassword="NDgxNTE2MjM0Mg==";
     var slnTxt="SWsgYmVuIGRlIHZvbGdlbmRlIHRpcA==";
+    var konami = undefined;
 
     vm.temperature = 36;
     vm.message = 'Please closely monitor the reactor pressure';
@@ -90,6 +93,7 @@ function MainCtrl($timeout, ngAudio) {
         if (vm.access) {
             machineSound.play();
             accessGrantedSound.play();
+            konami = new Konami(function() { locks = Math.min(locks,konamiLocks); konamiCodeSound.play(); });
             $timeout(changeTemperature, 500);
         }
     }
