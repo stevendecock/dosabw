@@ -15,6 +15,7 @@ function MainCtrl($timeout, ngAudio) {
     var machineSound = ngAudio.load('machineKort');
     var accessDeniedSound = ngAudio.load('accessDenied');
     var accessGrantedSound = ngAudio.load('accessGranted');
+    var invalidSpacebarSound = ngAudio.load('invalidSpacebar');
     machineSound.loop = true;
 
     var vm = this;
@@ -172,6 +173,7 @@ function MainCtrl($timeout, ngAudio) {
                 if (locks < 20) {
                     locks++;
                 }
+                invalidSpacebarSound.play();
             }
         }
     }
