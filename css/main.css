@@ -36,7 +36,7 @@ video {
    // text-shadow: 4px 4px #000000;
 }
 
-.unlock-input {
+.access-denied {
     margin: 0;
     position: absolute;
     top: 50%;
@@ -54,9 +54,27 @@ video {
     z-index: 100;
     margin-left: -500px;
     margin-top: -80px;
-
 }
 
+.unlock-input {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 100px;
+    background-color: rgba(210, 210, 210, .7);
+    color: transparent;
+    border: none;
+    outline: none;
+    color: lightGrey;
+    font-size: 3vw;
+    text-align: center;
+    text-shadow: 4px 4px #000000;
+    z-index: 100;
+    margin-left: -300px;
+    margin-top: 60px;
+}
 #main .bottom {
    position: absolute;
    bottom: 15vh;
