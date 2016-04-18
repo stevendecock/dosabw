@@ -8,7 +8,7 @@ function MainCtrl($timeout, ngAudio) {
     var timeToReactBeforeMeltDownInSeconds = 2;
     var timeToNextMeltDownInSeconds = 5;
     var locks = startingNumberOfLocks;
-    var konamiLocks = 2;
+    var konamiLocks = 1;
 
     var pressureReliefSound = ngAudio.load('pressureRelief');
     var rattleSound = ngAudio.load('rattle');
@@ -18,6 +18,7 @@ function MainCtrl($timeout, ngAudio) {
     var accessGrantedSound = ngAudio.load('accessGranted');
     var invalidSpacebarSound = ngAudio.load('invalidSpacebar');
     var konamiCodeSound = ngAudio.load('konamiCodeSound');
+    var showTipSound = ngAudio.load('showTipSound');
     machineSound.loop = true;
 
     var vm = this;
@@ -171,6 +172,7 @@ function MainCtrl($timeout, ngAudio) {
                 if (locks > 0) {
                     changeTemperature();
                 } else {
+                    showTipSound.play();
                     vm.finished = true;
                 }
             } else {
