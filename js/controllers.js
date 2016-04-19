@@ -25,7 +25,7 @@ function MainCtrl($timeout, ngAudio) {
     var lastMeltDown = new Date();
     var meltDownPromise = undefined;
     var unlockPassword="NDgxNTE2MjM0Mg==";
-    var slnTxt="SWsgYmVuIGRlIHZvbGdlbmRlIHRpcA==";
+    var slnTxt="dmFjYXR1cmU=";
     var konami = undefined;
 
     vm.temperature = 36;
@@ -173,6 +173,7 @@ function MainCtrl($timeout, ngAudio) {
                     changeTemperature();
                 } else {
                     showTipSound.play();
+                    machineSound.stop();
                     vm.finished = true;
                 }
             } else {

@@ -157,10 +157,21 @@ video {
    margin-right: -50%;
    transform: translate(-50%, -50%);
    color: lightGrey;
-   font-size: 6vw;
+   font-size: 7vw;
    text-shadow: 4px 4px #000000;
 }
 
+
+#sln .slnPhrase {
+    margin: 0;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    margin-right: 50px;
+    color: lightGrey;
+    font-size: 4vw;
+    text-shadow: 4px 4px #000000;
+}
 
 .mtt-graduationValueText {
     display: none;

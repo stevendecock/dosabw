@@ -41,7 +41,7 @@
         <source src="audio/konamiCode.mp3" type="audio/mp3">
     </audio>
     <audio id="showTipSound">
-        <source src="audio/show_tip_sound.wav" type="audio/wav">
+        <source src="audio/Appear-KP-1137861048.wav" type="audio/wav">
     </audio>
     <audio id="pressureRelief">
         <source src="audio/pressureRelief.mp3" type="audio/mp3">
@@ -66,6 +66,9 @@
         </div>
 
         <div id="sln" data-ng-show="main.finished">
+            <div class="slnPhrase">
+                U hebt eindspel wachtwoord nr. 1 gevonden, houd dit goed bij.
+            </div>
             <div class="slnContent">
                 {{main.sln()}}
             </div>
@@ -86,7 +89,7 @@
 
         </div>
 
-        <div class="top" data-ng-show="main.access">
+        <div class="top" data-ng-show="main.access && !main.finished">
             <div class="topContent">
                 {{main.message}}
             </div>
