@@ -6,7 +6,7 @@ function MainCtrl($timeout, ngAudio) {
     var startingNumberOfLocks = 10;
 
     var timeToReactBeforeMeltDownInSeconds = 2;
-    var timeToNextMeltDownInSeconds = 5;
+    var timeToNextMeltDownInSeconds = 30;
     var locks = startingNumberOfLocks;
     var konamiLocks = 1;
 
