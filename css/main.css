@@ -41,7 +41,7 @@ video {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 1000px;
+    width: 1400px;
     height: 160px;
     background-color: transparent;
     color: transparent;
@@ -52,7 +52,7 @@ video {
     text-align: center;
     text-shadow: 4px 4px #000000;
     z-index: 100;
-    margin-left: -500px;
+    margin-left: -700px;
     margin-top: -80px;
 }
 

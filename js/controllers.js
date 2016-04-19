@@ -33,6 +33,7 @@ function MainCtrl($timeout, ngAudio) {
 
     vm.access = false;
     vm.shakeAccessDenied = false;
+    vm.accessDeniedText = "Access Denied";
 
     vm.gauge = {
         upperLimit : 100,
@@ -90,6 +91,12 @@ function MainCtrl($timeout, ngAudio) {
         if (atob(unlockPassword) === stripNonNumeric(vm.password)) {
             vm.access = true;
         };
+        if (stripNonAlphaNumeric(vm.password.toUpperCase())==="OENDBILMEK") {
+            locks = Math.max(23,locks);
+            vm.accessDeniedText = "Mole added 13 meltdowns";
+            $timeout(function() {vm.accessDeniedText="Access Denied";}, 4000);
+            vm.password="";
+        }
 
         if (vm.access) {
             machineSound.play();
