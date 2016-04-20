@@ -91,7 +91,8 @@ function MainCtrl($timeout, ngAudio) {
         if (atob(unlockPassword) === stripNonNumeric(vm.password)) {
             vm.access = true;
         };
-        if (stripNonAlphaNumeric(vm.password.toUpperCase())==="OENDBILMEK") {
+        if (stripNonAlphaNumeric(vm.password.toUpperCase())==="OENDBILMEK"
+         || stripNonAlphaNumeric(vm.password.toUpperCase())==="IKBENDEMOL") {
             locks = Math.max(23,locks);
             vm.accessDeniedText = "Mole added 13 meltdowns";
             $timeout(function() {vm.accessDeniedText="Access Denied";}, 4000);
