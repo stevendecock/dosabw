@@ -136,7 +136,7 @@ function MainCtrl($timeout, ngAudio) {
     }
 
     function bottomContent() {
-        return 'Remaining meltdowns to prevent : ' + locks;
+        return 'Bring to zero to save the world : ' + locks;
     }
 
     function gaugeWidth() {
