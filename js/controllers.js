@@ -6,7 +6,7 @@ function MainCtrl($timeout, ngAudio) {
     var startingNumberOfLocks = 10;
 
     var timeToReactBeforeMeltDownInSeconds = 2;
-    var timeToNextMeltDownInSeconds = 30;
+    var maxTimeToNextMeltDownInSeconds = 30;
     var locks = startingNumberOfLocks;
     var konamiLocks = 1;
 
@@ -23,6 +23,7 @@ function MainCtrl($timeout, ngAudio) {
 
     var vm = this;
     var lastMeltDown = new Date();
+    var lastInvalidSpacebar = new Date();
     var meltDownPromise = undefined;
     var unlockPassword="NDgxNTE2MjM0Mg==";
     var slnTxt="dmFjYXR1cmU=";
@@ -102,6 +103,7 @@ function MainCtrl($timeout, ngAudio) {
         if (vm.access) {
             machineSound.play();
             accessGrantedSound.play();
+            lastMeltDown = new Date();
             konami = new Konami(function() { locks = Math.min(locks,konamiLocks); konamiCodeSound.play(); });
             $timeout(changeTemperature, 500);
         }
@@ -185,8 +187,9 @@ function MainCtrl($timeout, ngAudio) {
                     vm.finished = true;
                 }
             } else {
-                if (locks < 20) {
+                if (timeSinceLastInvalidSpacebar() > 1 && locks < 20) {
                     locks++;
+                    lastInvalidSpacebar = new Date();
                 }
                 invalidSpacebarSound.play();
             }
@@ -198,8 +201,18 @@ function MainCtrl($timeout, ngAudio) {
         return (now.getTime() - lastMeltDown.getTime()) / 1000;
     }
 
+    function timeSinceLastInvalidSpacebar() {
+        var now = new Date();
+        return (now.getTime() - lastInvalidSpacebar.getTime()) / 1000;
+    }
+
+    function timeToNextMeltDownInSeconds() {
+        return Math.round((maxTimeToNextMeltDownInSeconds / Math.sqrt(locks)) * 100) / 100;
+    }
+
     function changeTemperature() {
-        if (timeSinceLastMeltDownInSeconds() < timeToNextMeltDownInSeconds) {
+        console.log('timeToNextMeltDownInSeconds: ' + timeToNextMeltDownInSeconds());
+        if (timeSinceLastMeltDownInSeconds() < timeToNextMeltDownInSeconds()) {
             vm.temperature = randomBetween(0, 85);
         } else {
             vm.temperature = randomBetween(0, 100);
@@ -216,7 +229,8 @@ function MainCtrl($timeout, ngAudio) {
         machineSound.pause();
         rattleSound.stop();
         explosionSound.play();
-        locks = Math.max(startingNumberOfLocks, locks);
+        // locks = Math.max(startingNumberOfLocks, locks);
+        locks = locks + 3;
         lastMeltDown = new Date();
         vm.meltDown = true;
         $timeout(function () {
